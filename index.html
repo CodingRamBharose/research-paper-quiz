@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Big Data Quiz</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      .quiz-container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .question {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+      .option {
+        display: block;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #fff;
+      }
+      .option.correct {
+        background-color: #c8e6c9;
+        border-color: #388e3c;
+      }
+      .option.wrong {
+        background-color: #ffcdd2;
+        border-color: #d32f2f;
+      }
+      .footer {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container" id="quiz"></div>
+
+    <script>
+      const quizData = [
+        {
+          title: "Introduction to Big Data Programming Models",
+          questions: [
+            {
+              id: 1,
+              question: "What defines a Big Data programming model?",
+              options: [
+                { id: "a", text: "A method for querying relational databases" },
+                {
+                  id: "b",
+                  text: "A style of programming for parallel, distributed applications",
+                },
+                { id: "c", text: "A GUI framework for data visualization" },
+                { id: "d", text: "A networking protocol" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 2,
+              question:
+                "What is the primary focus of Big Data programming models?",
+              options: [
+                { id: "a", text: "Single-threaded data processing" },
+                {
+                  id: "b",
+                  text: "High-performance parallel processing of large datasets",
+                },
+                { id: "c", text: "Secure cloud-based storage" },
+                { id: "d", text: "Web-based applications" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 3,
+              question:
+                "Which of the following is NOT a characteristic of Big Data frameworks?",
+              options: [
+                { id: "a", text: "Fault tolerance" },
+                { id: "b", text: "High latency" },
+                { id: "c", text: "Scalability" },
+                { id: "d", text: "Parallelism" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 4,
+              question: "What is an example of a Big Data programming model?",
+              options: [
+                { id: "a", text: "MapReduce" },
+                { id: "b", text: "SQL" },
+                { id: "c", text: "XML Parsing" },
+                { id: "d", text: "REST API" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 5,
+              question:
+                "Which feature of Big Data frameworks ensures that computations can continue even if a node fails?",
+              options: [
+                { id: "a", text: "Scalability" },
+                { id: "b", text: "Fault tolerance" },
+                { id: "c", text: "Centralized processing" },
+                { id: "d", text: "Batch processing" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 6,
+              question:
+                "What is the main advantage of distributed computing in Big Data?",
+              options: [
+                {
+                  id: "a",
+                  text: "Increases processing power by using multiple nodes",
+                },
+                { id: "b", text: "Reduces internet speed requirements" },
+                { id: "c", text: "Eliminates the need for programming models" },
+                { id: "d", text: "Requires fewer storage resources" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 7,
+              question:
+                "What type of problems do Big Data programming models typically solve?",
+              options: [
+                { id: "a", text: "Simple arithmetic calculations" },
+                { id: "b", text: "Large-scale, data-intensive computations" },
+                { id: "c", text: "Small database queries" },
+                { id: "d", text: "Single-user application development" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 8,
+              question: "How do Big Data frameworks handle parallelism?",
+              options: [
+                {
+                  id: "a",
+                  text: "By running tasks sequentially on a single processor",
+                },
+                {
+                  id: "b",
+                  text: "By distributing computations across multiple nodes",
+                },
+                { id: "c", text: "By compressing data before processing" },
+                { id: "d", text: "By using cloud storage only" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 9,
+              question:
+                "Why is data locality important in Big Data processing?",
+              options: [
+                { id: "a", text: "It reduces data transfer latency" },
+                { id: "b", text: "It increases network congestion" },
+                { id: "c", text: "It slows down data processing" },
+                { id: "d", text: "It prevents scalability" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 10,
+              question:
+                "What is a challenge faced by Big Data programming models?",
+              options: [
+                { id: "a", text: "Handling structured and unstructured data" },
+                { id: "b", text: "Limiting data volume" },
+                { id: "c", text: "Reducing computing power" },
+                { id: "d", text: "Preventing scalability" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 11,
+              question:
+                "What differentiates Big Data programming from traditional programming?",
+              options: [
+                { id: "a", text: "Its use of object-oriented principles" },
+                {
+                  id: "b",
+                  text: "The requirement for relational database systems",
+                },
+                {
+                  id: "c",
+                  text: "The emphasis on distributed and parallel processing",
+                },
+                { id: "d", text: "The reliance on mobile applications" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 12,
+              question:
+                "Which feature makes Big Data programming models ideal for real-time data processing?",
+              options: [
+                { id: "a", text: "Batch processing" },
+                { id: "b", text: "High latency" },
+                { id: "c", text: "Low-latency execution" },
+                { id: "d", text: "Single-threaded execution" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 13,
+              question:
+                "Which Big Data framework is considered the standard for distributed computing?",
+              options: [
+                { id: "a", text: "Apache Hadoop" },
+                { id: "b", text: "Microsoft Excel" },
+                { id: "c", text: "MySQL" },
+                { id: "d", text: "Oracle" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 14,
+              question:
+                "What is a key advantage of parallel processing in Big Data?",
+              options: [
+                {
+                  id: "a",
+                  text: "It ensures computations are executed sequentially",
+                },
+                {
+                  id: "b",
+                  text: "It distributes tasks across multiple cores or machines",
+                },
+                { id: "c", text: "It decreases fault tolerance" },
+                { id: "d", text: "It removes the need for a database" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 15,
+              question:
+                "What is the importance of load balancing in Big Data frameworks?",
+              options: [
+                {
+                  id: "a",
+                  text: "It prevents system crashes by evenly distributing workloads",
+                },
+                { id: "b", text: "It reduces the need for data preprocessing" },
+                { id: "c", text: "It minimizes security risks" },
+                {
+                  id: "d",
+                  text: "It ensures all data is stored in a single location",
+                },
+              ],
+              correctAnswer: "a",
+            },
+          ],
+        },
+        {
+          title: "MapReduce Programming Model",
+          questions: [
+            {
+              id: 16,
+              question:
+                "What are the two main functions in a MapReduce program?",
+              options: [
+                { id: "a", text: "Sort and Filter" },
+                { id: "b", text: "Map and Reduce" },
+                { id: "c", text: "Aggregate and Join" },
+                { id: "d", text: "Distribute and Compute" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 17,
+              question:
+                "What is the purpose of the Shuffle phase in MapReduce?",
+              options: [
+                { id: "a", text: "Filtering data" },
+                {
+                  id: "b",
+                  text: "Grouping and sorting mapped results before reducing",
+                },
+                { id: "c", text: "Storing intermediate data" },
+                { id: "d", text: "Encrypting the dataset" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 18,
+              question:
+                "Which of the following is an example of a MapReduce implementation?",
+              options: [
+                { id: "a", text: "SQL" },
+                { id: "b", text: "Hadoop" },
+                { id: "c", text: "MongoDB" },
+                { id: "d", text: "NoSQL" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 19,
+              question:
+                "What type of data structure is primarily used in MapReduce for processing?",
+              options: [
+                { id: "a", text: "Graphs" },
+                { id: "b", text: "Key-Value pairs" },
+                { id: "c", text: "Tables" },
+                { id: "d", text: "Arrays" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 20,
+              question: "What is the main advantage of MapReduce?",
+              options: [
+                { id: "a", text: "It minimizes storage usage" },
+                { id: "b", text: "It scales linearly with additional nodes" },
+                { id: "c", text: "It only processes structured data" },
+                { id: "d", text: "It is limited to single-node execution" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 21,
+              question:
+                "What is the primary programming language used for Hadoop MapReduce?",
+              options: [
+                { id: "a", text: "Python" },
+                { id: "b", text: "Java" },
+                { id: "c", text: "C++" },
+                { id: "d", text: "Swift" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 22,
+              question:
+                "Which phase in MapReduce is responsible for reading input data?",
+              options: [
+                { id: "a", text: "Map" },
+                { id: "b", text: "Reduce" },
+                { id: "c", text: "Shuffle" },
+                { id: "d", text: "Sort" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 23,
+              question: "Which step occurs first in a MapReduce job execution?",
+              options: [
+                { id: "a", text: "Reduce" },
+                { id: "b", text: "Shuffle" },
+                { id: "c", text: "Map" },
+                { id: "d", text: "Sort" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 24,
+              question: "How does MapReduce achieve fault tolerance?",
+              options: [
+                { id: "a", text: "By using in-memory storage" },
+                { id: "b", text: "By automatically re-executing failed tasks" },
+                { id: "c", text: "By storing data in relational databases" },
+                { id: "d", text: "By running only on high-end hardware" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 25,
+              question: "What happens if a node fails during a MapReduce job?",
+              options: [
+                { id: "a", text: "The job stops entirely" },
+                {
+                  id: "b",
+                  text: "The failed task is re-executed on another node",
+                },
+                { id: "c", text: "Data is permanently lost" },
+                { id: "d", text: "The job is restarted from scratch" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 26,
+              question:
+                "Which of the following is NOT a key characteristic of MapReduce?",
+              options: [
+                { id: "a", text: "Distributed computing" },
+                { id: "b", text: "Fault tolerance" },
+                { id: "c", text: "Real-time processing" },
+                { id: "d", text: "Parallel execution" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 27,
+              question:
+                "What is an example of a real-world application of MapReduce?",
+              options: [
+                { id: "a", text: "Small-scale data processing" },
+                { id: "b", text: "Large-scale log analysis" },
+                { id: "c", text: "Single-user database management" },
+                { id: "d", text: "Desktop application development" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 28,
+              question: "What is the main limitation of MapReduce?",
+              options: [
+                { id: "a", text: "It cannot process structured data" },
+                {
+                  id: "b",
+                  text: "It is not suitable for iterative and real-time applications",
+                },
+                { id: "c", text: "It only runs on local machines" },
+                { id: "d", text: "It does not support cloud computing" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 29,
+              question: "What happens during the Reduce phase in MapReduce?",
+              options: [
+                {
+                  id: "a",
+                  text: "It processes key-value pairs and combines results",
+                },
+                { id: "b", text: "It loads data into a database" },
+                { id: "c", text: "It executes SQL queries" },
+                { id: "d", text: "It splits data into smaller pieces" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 30,
+              question:
+                "Which cloud service provider offers a MapReduce-based solution?",
+              options: [
+                { id: "a", text: "Microsoft Excel" },
+                { id: "b", text: "Amazon EMR" },
+                { id: "c", text: "Google Sheets" },
+                { id: "d", text: "Adobe Spark" },
+              ],
+              correctAnswer: "b",
+            },
+          ],
+        },
+        {
+          title: "Functional Programming for Big Data",
+          questions: [
+            {
+              id: 31,
+              question: "What is the main principle of functional programming?",
+              options: [
+                { id: "a", text: "Objects and classes" },
+                { id: "b", text: "Shared mutable state" },
+                {
+                  id: "c",
+                  text: "Avoidance of side effects and immutable variables",
+                },
+                { id: "d", text: "Use of global variables" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 32,
+              question:
+                "Which of the following frameworks follows the functional programming paradigm?",
+              options: [
+                { id: "a", text: "Hadoop" },
+                { id: "b", text: "Spark" },
+                { id: "c", text: "MySQL" },
+                { id: "d", text: "Cassandra" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 33,
+              question:
+                "What is a major benefit of functional programming in Big Data?",
+              options: [
+                { id: "a", text: "It uses less storage space" },
+                {
+                  id: "b",
+                  text: "It allows for parallel execution with minimal side effects",
+                },
+                { id: "c", text: "It reduces data processing speed" },
+                { id: "d", text: "It prevents all errors" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 34,
+              question:
+                "What is an example of a functional transformation in Spark?",
+              options: [
+                { id: "a", text: "For-loop" },
+                { id: "b", text: "Map function" },
+                { id: "c", text: "SQL queries" },
+                { id: "d", text: "Global variables" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 35,
+              question:
+                "What is referential transparency in functional programming?",
+              options: [
+                { id: "a", text: "The ability to change state globally" },
+                {
+                  id: "b",
+                  text: "The property that function calls always produce the same result for the same inputs",
+                },
+                { id: "c", text: "The reliance on mutable objects" },
+                { id: "d", text: "The lack of recursion support" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 36,
+              question:
+                "What is the purpose of higher-order functions in functional programming?",
+              options: [
+                { id: "a", text: "They store database records" },
+                { id: "b", text: "They manipulate UI elements" },
+                {
+                  id: "c",
+                  text: "They take functions as input or return functions as output",
+                },
+                { id: "d", text: "They provide network connectivity" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 37,
+              question:
+                "What type of data structure does Spark use for functional transformations?",
+              options: [
+                { id: "a", text: "Relational tables" },
+                { id: "b", text: "JSON objects" },
+                { id: "c", text: "Resilient Distributed Datasets (RDDs)" },
+                { id: "d", text: "Linked lists" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 38,
+              question:
+                "Which function in functional programming aggregates elements in a dataset?",
+              options: [
+                { id: "a", text: "map()" },
+                { id: "b", text: "reduce()" },
+                { id: "c", text: "filter()" },
+                { id: "d", text: "select()" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 39,
+              question: "What is tail recursion in functional programming?",
+              options: [
+                {
+                  id: "a",
+                  text: "A recursive function that stores intermediate results",
+                },
+                {
+                  id: "b",
+                  text: "A recursive function where the recursive call is the last operation",
+                },
+                { id: "c", text: "A loop-based alternative to recursion" },
+                { id: "d", text: "A function that changes global variables" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 40,
+              question:
+                "Which programming language is widely used for functional programming in Big Data?",
+              options: [
+                { id: "a", text: "Java" },
+                { id: "b", text: "Scala" },
+                { id: "c", text: "C++" },
+                { id: "d", text: "PHP" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 41,
+              question:
+                "How does functional programming handle data modifications?",
+              options: [
+                { id: "a", text: "By modifying data in place" },
+                {
+                  id: "b",
+                  text: "By creating new data copies instead of modifying existing data",
+                },
+                { id: "c", text: "By using a single global state" },
+                {
+                  id: "d",
+                  text: "By storing changes in a centralized database",
+                },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 42,
+              question:
+                "Which Spark API allows users to apply functional programming principles?",
+              options: [
+                { id: "a", text: "SparkSQL" },
+                { id: "b", text: "SparkRDD" },
+                { id: "c", text: "SparkUI" },
+                { id: "d", text: "SparkDB" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 43,
+              question:
+                "What is the significance of immutability in functional programming?",
+              options: [
+                {
+                  id: "a",
+                  text: "It prevents race conditions and side effects",
+                },
+                { id: "b", text: "It makes debugging harder" },
+                { id: "c", text: "It allows direct data modification" },
+                {
+                  id: "d",
+                  text: "It speeds up execution by using global state",
+                },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 44,
+              question:
+                "What does the flatMap function do in functional programming?",
+              options: [
+                { id: "a", text: "Maps elements one-to-one" },
+                {
+                  id: "b",
+                  text: "Maps elements and flattens nested structures",
+                },
+                { id: "c", text: "Reduces a dataset" },
+                { id: "d", text: "Sorts elements" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 45,
+              question:
+                "Which of the following statements about functional programming is true?",
+              options: [
+                { id: "a", text: "It relies on mutable variables" },
+                { id: "b", text: "It is difficult to parallelize" },
+                {
+                  id: "c",
+                  text: "It avoids side effects by using pure functions",
+                },
+                { id: "d", text: "It does not support recursion" },
+              ],
+              correctAnswer: "c",
+            },
+          ],
+        },
+        {
+          title: "SQL-Like Querying for Big Data",
+          questions: [
+            {
+              id: 46,
+              question: "What are the four basic SQL primitives?",
+              options: [
+                { id: "a", text: "Create, Insert, Read, Update" },
+                { id: "b", text: "Create, Insert, Update, Delete" },
+                { id: "c", text: "Store, Modify, Delete, Transfer" },
+                { id: "d", text: "Save, Load, Remove, Format" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 47,
+              question: "Which of the following best describes SQL?",
+              options: [
+                {
+                  id: "a",
+                  text: "A procedural language for programming Big Data applications",
+                },
+                {
+                  id: "b",
+                  text: "A declarative language designed for querying structured data",
+                },
+                { id: "c", text: "A markup language used for web development" },
+                { id: "d", text: "A file management system for databases" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 48,
+              question: "What is the purpose of SQL clauses?",
+              options: [
+                { id: "a", text: "To define variable types" },
+                {
+                  id: "b",
+                  text: "To specify conditions and structure statements",
+                },
+                { id: "c", text: "To allocate memory for databases" },
+                { id: "d", text: "To store user credentials" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 49,
+              question: "Which of the following is a key feature of SQL?",
+              options: [
+                { id: "a", text: "Imperative and state-driven" },
+                { id: "b", text: "Declarative and self-interpretable" },
+                { id: "c", text: "Event-based and mutable" },
+                { id: "d", text: "Object-oriented and compiled" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 50,
+              question: "What is the significance of execution plans in SQL?",
+              options: [
+                { id: "a", text: "They visualize table relationships" },
+                { id: "b", text: "They optimize query performance" },
+                { id: "c", text: "They store transaction logs" },
+                { id: "d", text: "They convert SQL to JSON" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 51,
+              question:
+                "Which of the following is NOT a variation of SQL for Big Data?",
+              options: [
+                { id: "a", text: "HQL (Hive Query Language)" },
+                { id: "b", text: "CQL (Cassandra Query Language)" },
+                { id: "c", text: "JSON-SQL" },
+                { id: "d", text: "AQL (Asterix Query Language)" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 52,
+              question: "What does HiveQL use as its execution backend?",
+              options: [
+                { id: "a", text: "Direct query execution" },
+                { id: "b", text: "Hadoop MapReduce" },
+                { id: "c", text: "Machine learning models" },
+                { id: "d", text: "NoSQL document storage" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 53,
+              question: "What is a key limitation of HiveQL compared to SQL?",
+              options: [
+                {
+                  id: "a",
+                  text: "It lacks support for transactions and materialized views",
+                },
+                { id: "b", text: "It does not support filtering" },
+                { id: "c", text: "It cannot process unstructured data" },
+                {
+                  id: "d",
+                  text: "It is not compatible with relational databases",
+                },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 54,
+              question:
+                "What is Cassandra Query Language (CQL) primarily used for?",
+              options: [
+                { id: "a", text: "Querying data stored in MongoDB" },
+                { id: "b", text: "Managing in-memory SQL databases" },
+                {
+                  id: "c",
+                  text: "Querying and manipulating data in Apache Cassandra",
+                },
+                { id: "d", text: "Optimizing SQL execution plans" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 55,
+              question:
+                "Which SQL-like query framework is designed for high-performance analytics in Hadoop?",
+              options: [
+                { id: "a", text: "Apache Spark" },
+                { id: "b", text: "Apache Impala" },
+                { id: "c", text: "PostgreSQL" },
+                { id: "d", text: "Oracle SQL" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 56,
+              question: "What is the purpose of Apache Drill?",
+              options: [
+                { id: "a", text: "To process real-time streaming data" },
+                {
+                  id: "b",
+                  text: "To execute schema-free SQL queries across multiple data sources",
+                },
+                { id: "c", text: "To optimize database storage structures" },
+                {
+                  id: "d",
+                  text: "To manage relational databases in a cloud environment",
+                },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 57,
+              question: "Which of the following best describes Spark SQL?",
+              options: [
+                { id: "a", text: "A NoSQL database system" },
+                { id: "b", text: "A relational query engine for Apache Spark" },
+                {
+                  id: "c",
+                  text: "A programming language for database development",
+                },
+                { id: "d", text: "A cloud-based query optimizer" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 58,
+              question:
+                "What is one advantage of using Spark SQL over traditional SQL?",
+              options: [
+                {
+                  id: "a",
+                  text: "It supports SQL execution on streaming data",
+                },
+                {
+                  id: "b",
+                  text: "It replaces the need for relational databases",
+                },
+                { id: "c", text: "It removes the requirement for indexing" },
+                { id: "d", text: "It does not require execution plans" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 59,
+              question:
+                "What is a primary feature of Presto, an SQL query engine?",
+              options: [
+                {
+                  id: "a",
+                  text: "It is optimized for large-scale ETL processing",
+                },
+                {
+                  id: "b",
+                  text: "It supports federated queries across multiple data sources",
+                },
+                {
+                  id: "c",
+                  text: "It only works with Hadoop Distributed File System",
+                },
+                {
+                  id: "d",
+                  text: "It is built specifically for cloud environments",
+                },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 60,
+              question:
+                "What differentiates Asterix Query Language (AQL) from traditional SQL?",
+              options: [
+                { id: "a", text: "It is based on a NoSQL-style data model" },
+                { id: "b", text: "It does not support joins" },
+                {
+                  id: "c",
+                  text: "It requires a specific database management system",
+                },
+                { id: "d", text: "It does not allow SELECT queries" },
+              ],
+              correctAnswer: "a",
+            },
+          ],
+        },
+        {
+          title: "Actor Model for Big Data",
+          questions: [
+            {
+              id: 61,
+              question: "What is the Actor Model in Big Data?",
+              options: [
+                {
+                  id: "a",
+                  text: "A framework for relational database management",
+                },
+                {
+                  id: "b",
+                  text: "A programming model for concurrent computation",
+                },
+                { id: "c", text: "A file storage system" },
+                { id: "d", text: "A cloud-based computing model" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 62,
+              question:
+                "What is considered the universal primitive unit of computation in the Actor Model?",
+              options: [
+                { id: "a", text: "Object" },
+                { id: "b", text: "Node" },
+                { id: "c", text: "Actor" },
+                { id: "d", text: "Process" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 63,
+              question: "How do actors communicate in the Actor Model?",
+              options: [
+                { id: "a", text: "Through shared memory" },
+                { id: "b", text: "By exchanging messages asynchronously" },
+                { id: "c", text: "Using a central database" },
+                { id: "d", text: "By modifying global variables" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 64,
+              question:
+                "Which of the following is a key feature of the Actor Model?",
+              options: [
+                { id: "a", text: "Sequential execution" },
+                { id: "b", text: "Centralized control" },
+                { id: "c", text: "Stateless and isolated actors" },
+                { id: "d", text: "Synchronous function calls" },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 65,
+              question: "How does the Actor Model handle failures?",
+              options: [
+                { id: "a", text: "By terminating the entire system" },
+                { id: "b", text: "By using a hierarchical supervision model" },
+                { id: "c", text: "By reloading the operating system" },
+                { id: "d", text: "By rolling back to previous states" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 66,
+              question: "What is the main advantage of using the Actor Model?",
+              options: [
+                {
+                  id: "a",
+                  text: "It eliminates the need for parallel computing",
+                },
+                {
+                  id: "b",
+                  text: "It ensures data consistency by sharing states",
+                },
+                {
+                  id: "c",
+                  text: "It enables high concurrency without shared state",
+                },
+                {
+                  id: "d",
+                  text: "It simplifies debugging in single-threaded applications",
+                },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 67,
+              question:
+                "Which of the following frameworks is based on the Actor Model?",
+              options: [
+                { id: "a", text: "Apache Spark" },
+                { id: "b", text: "Akka" },
+                { id: "c", text: "MySQL" },
+                { id: "d", text: "Hadoop" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 68,
+              question: 'What is the role of "tell" (`!`) in the Actor Model?',
+              options: [
+                { id: "a", text: "Sends a message and waits for a response" },
+                {
+                  id: "b",
+                  text: "Sends a message asynchronously and does not expect a response",
+                },
+                { id: "c", text: "Deletes an actor from the system" },
+                { id: "d", text: "Retrieves an actor's state" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 69,
+              question: 'What is the role of "ask" (`?`) in the Actor Model?',
+              options: [
+                { id: "a", text: "Sends a message and waits for a response" },
+                { id: "b", text: "Terminates an actor" },
+                { id: "c", text: "Synchronizes multiple actors" },
+                { id: "d", text: "Deletes all received messages" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 70,
+              question: "What does Akka’s supervision model do?",
+              options: [
+                {
+                  id: "a",
+                  text: "Prevents system crashes by isolating failures",
+                },
+                { id: "b", text: "Prevents actors from sending messages" },
+                { id: "c", text: "Synchronizes all actors in a system" },
+                {
+                  id: "d",
+                  text: "Ensures each actor runs in a separate process",
+                },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 71,
+              question:
+                "In the Actor Model, what happens when an actor receives a message?",
+              options: [
+                { id: "a", text: "It immediately modifies shared state" },
+                {
+                  id: "b",
+                  text: "It processes the message and may create more actors",
+                },
+                { id: "c", text: "It writes the message to a log file" },
+                {
+                  id: "d",
+                  text: "It forwards the message to all other actors",
+                },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 72,
+              question:
+                "Which feature makes the Actor Model inherently concurrent?",
+              options: [
+                {
+                  id: "a",
+                  text: "Actors operate independently and process messages asynchronously",
+                },
+                {
+                  id: "b",
+                  text: "Actors share a global state for faster execution",
+                },
+                {
+                  id: "c",
+                  text: "Actors rely on a master node to distribute tasks",
+                },
+                {
+                  id: "d",
+                  text: "Actors are designed to execute sequentially",
+                },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 73,
+              question:
+                "Which distributed framework uses the Actor Model for real-time data processing?",
+              options: [
+                { id: "a", text: "Hadoop" },
+                { id: "b", text: "Storm" },
+                { id: "c", text: "PostgreSQL" },
+                { id: "d", text: "TensorFlow" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 74,
+              question: "What is a Spout in Apache Storm?",
+              options: [
+                {
+                  id: "a",
+                  text: "A source that continuously generates or collects data",
+                },
+                { id: "b", text: "A storage system for actor states" },
+                { id: "c", text: "A control mechanism for debugging actors" },
+                { id: "d", text: "A function that deletes unused actors" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 75,
+              question: "What is a Bolt in Apache Storm?",
+              options: [
+                { id: "a", text: "A processing unit within a streaming flow" },
+                { id: "b", text: "A type of actor that only sends messages" },
+                { id: "c", text: "A centralized database for message storage" },
+                { id: "d", text: "A function used for stateful processing" },
+              ],
+              correctAnswer: "a",
+            },
+          ],
+        },
+        {
+          title: "Dataflow Programming for Big Data",
+          questions: [
+            {
+              id: 76,
+              question:
+                "What is the fundamental concept behind Dataflow programming?",
+              options: [
+                {
+                  id: "a",
+                  text: "Data processing is defined as sequential instructions",
+                },
+                {
+                  id: "b",
+                  text: "Data processing is modeled as a directed graph of operations",
+                },
+                { id: "c", text: "It uses a single-threaded execution model" },
+                { id: "d", text: "It does not support modularization" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 77,
+              question: "What is a key advantage of Dataflow programming?",
+              options: [
+                {
+                  id: "a",
+                  text: "Provides inherent trackable states during execution",
+                },
+                {
+                  id: "b",
+                  text: "Requires centralized execution on a single node",
+                },
+                { id: "c", text: "Limits processing to structured data only" },
+                {
+                  id: "d",
+                  text: "Uses a predefined sequence of function calls",
+                },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 78,
+              question:
+                "How does Dataflow programming differ from traditional programming models?",
+              options: [
+                { id: "a", text: "It relies on explicit function calls" },
+                {
+                  id: "b",
+                  text: "It emphasizes modularization and task connections",
+                },
+                { id: "c", text: "It does not support parallelism" },
+                {
+                  id: "d",
+                  text: "It strictly follows SQL-based execution plans",
+                },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 79,
+              question:
+                "Which of the following is an example of a Dataflow-based system?",
+              options: [
+                { id: "a", text: "Apache Oozie" },
+                { id: "b", text: "MySQL" },
+                { id: "c", text: "Apache Kafka" },
+                { id: "d", text: "TensorFlow" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 80,
+              question: "What is a primary feature of Dataflow programming?",
+              options: [
+                { id: "a", text: "It is inherently event-driven" },
+                { id: "b", text: "It does not support distributed computing" },
+                {
+                  id: "c",
+                  text: "It provides control-logic-based modularization",
+                },
+                {
+                  id: "d",
+                  text: "It is designed exclusively for small datasets",
+                },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 81,
+              question: "What is Apache Oozie primarily used for?",
+              options: [
+                { id: "a", text: "Managing large-scale graph databases" },
+                {
+                  id: "b",
+                  text: "Scheduling and managing workflow execution in Hadoop",
+                },
+                { id: "c", text: "Performing real-time video processing" },
+                { id: "d", text: "Automating machine learning model training" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 82,
+              question: "How are dependencies managed in a Dataflow model?",
+              options: [
+                { id: "a", text: "By manually defining function calls" },
+                { id: "b", text: "Through data-driven execution flow" },
+                { id: "c", text: "By using only relational databases" },
+                { id: "d", text: "By removing intermediate results" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 83,
+              question: "In Dataflow programming, how do tasks execute?",
+              options: [
+                { id: "a", text: "Sequentially based on user-defined order" },
+                { id: "b", text: "Asynchronously based on data availability" },
+                { id: "c", text: "Only when explicitly called by a program" },
+                { id: "d", text: "In a strictly recursive manner" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 84,
+              question:
+                "Which representation is commonly used in Dataflow models?",
+              options: [
+                { id: "a", text: "Graph-based representations" },
+                { id: "b", text: "Relational algebra" },
+                { id: "c", text: "Spreadsheet formulas" },
+                { id: "d", text: "Hierarchical databases" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 85,
+              question:
+                "What makes Dataflow programming suitable for Big Data applications?",
+              options: [
+                { id: "a", text: "It avoids concurrency and parallelism" },
+                {
+                  id: "b",
+                  text: "It supports low-level control over execution flow",
+                },
+                {
+                  id: "c",
+                  text: "It efficiently handles dependencies and task execution",
+                },
+                {
+                  id: "d",
+                  text: "It is designed for single-user desktop applications",
+                },
+              ],
+              correctAnswer: "c",
+            },
+            {
+              id: 86,
+              question: "What type of workflow does Apache Oozie use?",
+              options: [
+                { id: "a", text: "A JSON-based workflow" },
+                { id: "b", text: "A directed acyclic graph (DAG) workflow" },
+                { id: "c", text: "A single-threaded execution flow" },
+                { id: "d", text: "A tabular execution plan" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 87,
+              question:
+                "Which of the following is a challenge in Dataflow programming?",
+              options: [
+                { id: "a", text: "Difficulty in modularizing workflows" },
+                {
+                  id: "b",
+                  text: "Higher programming complexity compared to SQL",
+                },
+                { id: "c", text: "Lack of support for parallel processing" },
+                { id: "d", text: "Inability to handle unstructured data" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 88,
+              question: "How does Dataflow programming benefit modularization?",
+              options: [
+                { id: "a", text: "By enforcing sequential execution" },
+                {
+                  id: "b",
+                  text: "By structuring applications as connected components",
+                },
+                { id: "c", text: "By avoiding dependencies between processes" },
+                { id: "d", text: "By removing the need for state tracking" },
+              ],
+              correctAnswer: "b",
+            },
+            {
+              id: 89,
+              question:
+                "Which of the following is a real-world application of Dataflow models?",
+              options: [
+                { id: "a", text: "Workflow automation in Hadoop ecosystems" },
+                {
+                  id: "b",
+                  text: "Managing transactions in relational databases",
+                },
+                { id: "c", text: "Rendering 3D animations in games" },
+                { id: "d", text: "Editing videos in real-time" },
+              ],
+              correctAnswer: "a",
+            },
+            {
+              id: 90,
+              question: "What is a key limitation of Dataflow programming?",
+              options: [
+                { id: "a", text: "It does not support concurrency" },
+                {
+                  id: "b",
+                  text: "It lacks declarative programming capabilities",
+                },
+                {
+                  id: "c",
+                  text: "It is harder to integrate compared to functional programming models",
+                },
+                {
+                  id: "d",
+                  text: "It cannot be used for cloud computing applications",
+                },
+              ],
+              correctAnswer: "c",
+            },
+          ],
+        },
+      ];
+
+      const quizContainer = document.getElementById("quiz");
+
+      quizData.forEach((section) => {
+        const sectionTitle = document.createElement("h2");
+        sectionTitle.textContent = section.title;
+        quizContainer.appendChild(sectionTitle);
+
+        section.questions.forEach((q) => {
+          const questionElement = document.createElement("div");
+          questionElement.classList.add("question");
+          questionElement.textContent = `${q.id}. ${q.question}`;
+
+          const optionsContainer = document.createElement("div");
+
+          q.options.forEach((option) => {
+            const optionElement = document.createElement("div");
+            optionElement.classList.add("option");
+            optionElement.textContent = option.text;
+            optionElement.addEventListener("click", () => {
+              document
+                .querySelectorAll(".option")
+                .forEach((opt) => opt.classList.remove("correct", "wrong"));
+
+              if (option.id === q.correctAnswer) {
+                optionElement.classList.add("correct");
+              } else {
+                optionElement.classList.add("wrong");
+                document.querySelectorAll(".option").forEach((opt) => {
+                  if (
+                    opt.textContent ===
+                    q.options.find((o) => o.id === q.correctAnswer).text
+                  ) {
+                    opt.classList.add("correct");
+                  }
+                });
+              }
+            });
+            optionsContainer.appendChild(optionElement);
+          });
+
+          quizContainer.appendChild(questionElement);
+          quizContainer.appendChild(optionsContainer);
+        });
+      });
+    </script>
+    <div class="footer">&copy; All rights reserved by Ram Sharma</div>
+  </body>
+</html>
